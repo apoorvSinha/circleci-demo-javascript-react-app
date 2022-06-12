@@ -8,7 +8,12 @@ workflows:
 jobs:
   test:
     docker:
-      - image: cimg/node:18.3.0
+      - image: cimg/openjdk:17.0.3
     steps:
       - checkout
-      - run: node --version
+      - run:
+          name: Install dependencies
+          command: mvn clean
+      - run: 
+          name: Run Test
+          command: mvn clean install
